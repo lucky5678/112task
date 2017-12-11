@@ -24,7 +24,7 @@ describe('pos', function () {
 
         spyOn(console, 'log');
 
-        printInventory(inputs,allItems);
+        printInventory(inputs, allItems);
 
         var expectText =
             '***<没钱赚商店>购物清单***\n' +
@@ -42,14 +42,16 @@ describe('pos', function () {
 
         expect(console.log).toHaveBeenCalledWith(expectText);
     });
-    it('calculateCount count result',function () {
+    it('calculateCount count result', function () {
+        spyOn(console, 'log');
 
-        allItems = loadAllItems();
-         var result =  calculateCount(inputs);
-        expect(result).toEqual([{"barcode":'ITEM000001', "count":5},
-            {"barcode":'ITEM000003', "count":2},
-            {"barcode":'ITEM000005', "count":3}
-            ]);
+        calculateCount(inputs, allItems);
+        var text = [{"barcode": 'ITEM000001', "count": 5},
+            {"barcode": 'ITEM000003', "count": 2},
+            {"barcode": 'ITEM000005', "count": 3}
+        ];
+
+        expect(console.log).toHaveBeenCalledWith(text);
 
     });
 

@@ -3,6 +3,7 @@ function printInventory(inputs, allItems) {
     var count = calculateCount(inputs); //计算相同barcode;
     var countAndItems = combineItemsAndCount(count, allItems);  //合并商品信息与数量
 
+    console.log(calculateCount(inputs));
     console.log(printReceiptText(countAndItems));   //打印拼接的信息
 };
 function calculateCount(inputs) {
