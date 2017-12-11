@@ -1,5 +1,6 @@
-const main = require('../main/main');
-
+const loadAllItems = require('../main/datbase');
+const printInventory = require('../main/printInventory');
+const calculateCount = require('../main/printInventory');
 describe('pos', function () {
     var allItems;
     var inputs;
@@ -23,7 +24,7 @@ describe('pos', function () {
 
         spyOn(console, 'log');
 
-        printInventory(inputs);
+        printInventory(inputs,allItems);
 
         var expectText =
             '***<没钱赚商店>购物清单***\n' +
@@ -41,4 +42,15 @@ describe('pos', function () {
 
         expect(console.log).toHaveBeenCalledWith(expectText);
     });
+    it('calculateCount count result',function () {
+
+        allItems = loadAllItems();
+         var result =  calculateCount(inputs);
+        expect(result).toEqual([{"barcode":'ITEM000001', "count":5},
+            {"barcode":'ITEM000003', "count":2},
+            {"barcode":'ITEM000005', "count":3}
+            ]);
+
+    });
+
 });
